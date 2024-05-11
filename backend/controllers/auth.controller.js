@@ -7,6 +7,7 @@ const { SECRET_KEY } = require("../config");
 exports.signIn = async (req, res) => {
   try {
     const { email, password } = req.body;
+    console.log(email);
     const user = await User.findOne({ email });
     if (user) {
       const passMatch = bcrypt.compareSync(password, user.password);
@@ -56,6 +57,7 @@ exports.signIn = async (req, res) => {
 exports.signUp = async (req, res) => {
   try {
     const { firstName, lastName, email, password } = req.body;
+    console.log(req.body);
     const user = await User.findOne({ email: email });
     if (user) {
       return res.status(400).send({
@@ -67,10 +69,8 @@ exports.signUp = async (req, res) => {
       firstName,
       email,
       password: hashedPassword,
-      lastName,
-      role: 'operator',
-      showSettings: ['well-info', 'settings', 'tops', 'files', 'photos', 'slides', 'mud', 'bits', 'bha', 'gas', 'daily', 'trajectories', 'curves', 'plots', 'samples', 'export', 'morning-report', 'final-report']
-    });
+      lastName});
+    console.log(newUser);
     await newUser.save();
     res.status(200).send({
       user: {

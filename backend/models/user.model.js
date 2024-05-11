@@ -16,27 +16,9 @@ const schema = new mongoose.Schema(
     password: {
       type: String,
       required: true,
-    },
-    bio: {
-      type: String,
-    },
-    role: {
-      type: String,
-      default: "operator",
-    },
-    showSettings: {
-      type: [mongoose.SchemaTypes.Mixed]
-    },
-    archivedProjects: {
-      type: [mongoose.Types.ObjectId],
-      ref: "projects",
-    },
-    archivedWells: {
-      type: [mongoose.Types.ObjectId],
-      ref: "wells",
     }
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("users", schema);
+module.exports = mongoose.model("Users", schema);
